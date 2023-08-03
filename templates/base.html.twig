@@ -16,7 +16,11 @@
         <h1>Liste de publications</h1>
     <ul>
         {% for publication in publications %}
-            <li>{{ publication.title }}</li>
+            <li>
+                {{ publication.title }}
+                <a href="{{ path('app_show_publication', {'id': publication.id}) }}">  Show </a>
+            </li>
+            
         {% endfor %}
     </ul>
         

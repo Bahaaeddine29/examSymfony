@@ -4,7 +4,7 @@
     <h1>{{ publication.title }}</h1>
     <p>{{ publication.content }}</p>
 
-    <p>Nombre de commentaires : {{ publication.comments|length}}</p>
+    <p>Nombre de commentaires : {{ publication.comments|length}} </p>
 
     <h2>Commentaires</h2>
     <ul>
@@ -12,4 +12,10 @@
             <li>{{ comment.content }}</li>
         {% endfor %}
     </ul>
+
+    <h2>Ajouter un commentaire</h2>
+        {{ form_start(commentForm) }}
+        {{ form_row(commentForm.content) }}
+        <button type="submit">Ajouter le commentaire</button>
+        {{ form_end(commentForm) }}
 {% endblock %}
