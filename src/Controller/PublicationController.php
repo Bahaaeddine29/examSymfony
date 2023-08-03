@@ -25,17 +25,7 @@ class PublicationController extends AbstractController
         ]);
     }
 
-    // #[Route('/show/{id}', name: 'app_show_publication')]
-    // public function showPublication(int $id, EntityManagerInterface $entityManager): Response
-    // {
-    //     $publication = $entityManager->find(Publication::class, $id);
-
-
-    //     return $this->render('publication/show.html.twig', [
-    //         'publication' => $publication,
-    //     ]);
-    // }
-
+    
     #[Route('/show/{id}', name: 'app_show_publication')]
     public function showPublication(int $id, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -53,7 +43,6 @@ class PublicationController extends AbstractController
             
             $commentaire->setPublication($publication);
 
-            
             $entityManager->persist($commentaire);
             $entityManager->flush();
 
