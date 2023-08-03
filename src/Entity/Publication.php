@@ -25,12 +25,12 @@ class Publication
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\OneToMany(mappedBy: 'comments', targetEntity: Comment::class)]
-    private Collection $publications;
+    #[ORM\OneToMany(mappedBy: 'publication', targetEntity: Comment::class)]
+    private Collection $comments;
 
     public function __construct()
     {
-        $this->publications = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,30 +77,32 @@ class Publication
     /**
      * @return Collection<int, Comment>
      */
-    public function getPublications(): Collection
+    public function getComments(): Collection
     {
-        return $this->publications;
+        return $this->comments;
     }
 
-    public function addPublication(Comment $publication): static
+    public function addComment(Comment $comment): static
     {
-        if (!$this->publications->contains($publication)) {
-            $this->publications->add($publication);
-            $publication->setComments($this);
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setPublication($this);
         }
 
         return $this;
     }
 
-    public function removePublication(Comment $publication): static
+    public function removeComment(Comment $comment): static
     {
-        if ($this->publications->removeElement($publication)) {
+        if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
-            if ($publication->getComments() === $this) {
-                $publication->setComments(null);
+            if ($comment->getPublication() === $this) {
+                $comment->setPublication(null);
             }
         }
 
         return $this;
     }
+
+
 }

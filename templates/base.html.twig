@@ -11,6 +11,17 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        
+        <h1>Liste de publications</h1>
+    <ul>
+        {% for publication in publications %}
+            <li>{{ publication.title }}</li>
+        {% endfor %}
+    </ul>
+        
+        
+        
+        {% endblock %}
     </body>
 </html>

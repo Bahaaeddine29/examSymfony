@@ -20,8 +20,9 @@ class Comment
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(inversedBy: 'publications')]
-    private ?Publication $comments = null;
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Publication $publication = null;
 
     public function getId(): ?int
     {
@@ -52,14 +53,14 @@ class Comment
         return $this;
     }
 
-    public function getComments(): ?Publication
+    public function getPublication(): ?Publication
     {
-        return $this->comments;
+        return $this->publication;
     }
 
-    public function setComments(?Publication $comments): static
+    public function setPublication(?Publication $publication): static
     {
-        $this->comments = $comments;
+        $this->publication = $publication;
 
         return $this;
     }
